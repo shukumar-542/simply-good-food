@@ -18,7 +18,7 @@ const NavBarMenus = [
 
 
 const Navbar = () => {
-    const [isMobile,setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     return (
         <div className='sticky top-0 z-40 '>
 
@@ -89,20 +89,20 @@ const Navbar = () => {
                         <div className="hidden lg:block">
                             <ul className="flex justify-end items-center gap-2 lg:flex-row flex-col lg:py-0 py-10">
                                 {NavBarMenus.map((menu, index) => (
-                                        <Link key={index} href={menu.route}>
-                                            <li
-                                                className={`${index === 6 ? "" : "border-e-2 border-gray-400"
-                                                    } ${index === 0 && 'text-green-500'} text-xl font-semibold lg:mb-0 mb-5 cursor-pointer  group relative px-3 md:text-base hover:text-green-500`}
-                                            >
-                                                {menu.name}
-                                            </li>
-                                        </Link>
+                                    <Link key={index} href={menu.route}>
+                                        <li
+                                            className={`${index === 6 ? "" : "border-e-2 border-gray-400"
+                                                } ${index === 0 && 'text-green-500'} text-xl font-semibold lg:mb-0 mb-5 cursor-pointer  group relative px-3 md:text-base hover:text-green-500`}
+                                        >
+                                            {menu.name}
+                                        </li>
+                                    </Link>
 
 
-                                    ))}
+                                ))}
 
 
-                               
+
                             </ul>
                         </div>
                         {/* mobile responsive */}
@@ -124,12 +124,14 @@ const Navbar = () => {
                     {/* //*More nav Links */}
                     <div className="">
                         <ul className="flex justify-end items-center gap-2 flex-row py-0">
-                            <li className="cursor-pointer text-sm group relative px-2 md:text-[18px] ">
-                                <Button variant={'secondary'}>
-                                    Log in
-                                </Button>
-                            </li>
-                            <Link href="/signIn">
+                            <Link href='/login'>
+                                <li className="cursor-pointer text-sm group relative px-2 md:text-[18px] ">
+                                    <Button variant={'secondary'}>
+                                        Log in
+                                    </Button>
+                                </li>
+                            </Link>
+                            <Link href="/register">
                                 <li className="cursor-pointer text-sm font-semibold group relative px-2 md:text-[18px] ">
                                     <Button >
                                         Sign up
