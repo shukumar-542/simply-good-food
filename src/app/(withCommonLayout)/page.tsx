@@ -1,5 +1,6 @@
 import DailyMeal from '@/components/DailyMeal/DailyMeal';
 import FAQS from '@/components/FAQS/FAQS';
+import Feedback from '@/components/Feedback/Feedback';
 import WhyGoodFood from '@/components/WhyGoodFood/WhyGoodFood';
 import React from 'react';
 
@@ -10,6 +11,7 @@ const HomePage = () => {
       <WhyGoodFood/>
       <DailyMeal/>
       <FAQS/>
+      <Feedback/>
     </div>
   );
 };
