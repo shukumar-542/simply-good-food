@@ -3,7 +3,7 @@ import img1 from '@/assets/product1.jpg'
 import img2 from '@/assets/product2.jpg'
 import img3 from '@/assets/product3.jpg'
 import img4 from '@/assets/product4.jpg'
-import img5 from '@/assets/p1.jpg'
+import img5 from '@/assets/kk.jpg'
 import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
@@ -90,7 +90,7 @@ const TrendingProduct = () => {
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
-                {/* <Image src={img5} className='h-[50vh] rounded-md' height={400} width={400} alt='img' /> */}
+                {/* <Image src={img5} className='w-full' height={400} width={600} alt='img' /> */}
 
                         
             </div>
