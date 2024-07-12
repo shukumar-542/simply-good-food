@@ -71,8 +71,8 @@ const TrendingProduct = async () => {
                 >
                     <CarouselContent>
                         {products.map((product: TProduct) => (
-                            <CarouselItem key={product?._id} className="md:basis-1/2 lg:basis-1/3">
-                                <Link href={`/product/${product?._id}` }>
+                            <CarouselItem key={product?._id} className="md:basis-1/2 lg:basis-1/3 mx-auto">
+                                <Link href={`/product/${product?._id}`}>
                                     <div className="p-1">
                                         <Card>
                                             <CardContent className="flex  items-center justify-center p-4 border-none bg-[#F6F6F6]">
@@ -98,9 +98,11 @@ const TrendingProduct = async () => {
                                 </Link>
                             </CarouselItem>
                         ))}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    </CarouselContent >
+                    <div className='hidden sm:block'>
+                        <CarouselPrevious className='-left-8  ' />
+                        <CarouselNext className='-right-8' />
+                    </div>
                 </Carousel>
                 {/* <Image src={img5} className='w-full' height={400} width={600} alt='img' /> */}
 

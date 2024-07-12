@@ -8,12 +8,12 @@ const FAQS = () => {
     return (
         <div className="py-10">
             <h1 className="text-center text-5xl font-bold text-gray-600">Popular Frequently Asked Questions</h1>
-            <p className="max-w-[55%] mx-auto text-center mt-10"><span className="text-green-600  ">Simply Good Food</span> prepares and delivers organically sourced, fresh meals to your door nationwide. Unlike other meal kit delivery
+            <p className="max-w-[80%] md:max-w-[55%]  mx-auto text-center mt-10"><span className="text-green-600  ">Simply Good Food</span> prepares and delivers organically sourced, fresh meals to your door nationwide. Unlike other meal kit delivery
                 services that need preparation and cleaning, our meals are delivered ready to consume. Our mission is to make healthy eating easy
                 and enjoyable while not sacrificing flavor. Do you have a question regarding our shipping service?</p>
 
 
-            <div className="max-w-7xl mx-auto py-10">
+            <div className="max-w-7xl mx-auto py-10 px-1">
                 <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                         <AccordionTrigger>What are the foods like Steel Yat? How does the mail plan work?

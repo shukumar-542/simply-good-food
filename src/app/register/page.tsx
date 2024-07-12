@@ -16,26 +16,19 @@ import { z } from "zod"
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 const formSchema = z.object({
-    username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
-    }),
-    email: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
-    }),
-    contactNumber: z.string().min(5, {
-        message: "Username must be at least 5 characters.",
-    }),
-    address: z.string().min(5, {
-        message: "Username must be at least 5 characters.",
-    }),
-    password: z.string().min(6, {
-        message: "password must be at least 6 characters.",
-    }),
-    confirmPassword: z.string().min(6, {
-        message: "password must be at least 6 characters.",
-    }),
-})
+    username: z.string().min(2, { message: "Username must be at least 2 characters." }),
+    email: z.string().email({ message: "Invalid email address." }),
+    contactNumber: z.string().min(5, { message: "Contact number must be at least 5 characters." }),
+    address: z.string().min(5, { message: "Address must be at least 5 characters." }),
+    password: z.string().min(6, { message: "Password must be at least 6 characters." }),
+    confirmPassword: z.string().min(6, { message: "Confirm password must be at least 6 characters." }),
+  }).refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 const RegisterPage = () => {
 
@@ -46,21 +39,50 @@ const RegisterPage = () => {
             email : "",
             contactNumber : "",
             password: "",
+            confirmPassword: "",
 
         },
     })
+    const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+        setError(null);
+
+        try {
+            const res = await fetch("/api/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name: values.username,
+                email: values.email,
+                password: values.password,
+              }),
+            });
+      
+            const data = await res.json();
+            if (!res.ok) {
+              throw new Error(data.message || "Something went wrong");
+            }
+      
+            router.push("/");
+          } catch (err : any) {
+            setError(err.message);
+          }
+      
+
+       
     }
     return (
-        <div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/5jpThSx/login-Page-Image.jpg)` }}>
-            <div className="flex items-center justify-evenly h-full bg-black bg-opacity-50">
+        <div className=" bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/5jpThSx/login-Page-Image.jpg)` }}>
+            <div className="flex items-center justify-evenly h-full bg-black bg-opacity-50 py-10">
                 <div></div>
                 <div></div>
-                <div className="bg-gray-200 bg-opacity-90 p-8 rounded-md shadow-md w-full max-w-lg">
+                <div className="bg-gray-200  bg-opacity-90 p-8 rounded-md shadow-md w-full max-w-lg">
                     <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">Sign Up</h1>
                     <p className='text-center text-gray-600 pb-5'>Please enter your Personal Data</p>
 

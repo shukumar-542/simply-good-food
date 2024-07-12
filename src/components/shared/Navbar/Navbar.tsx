@@ -30,7 +30,7 @@ const Navbar = () => {
 
 
 
-            <div className="bg-white shadow-md py-5 text-slate-800 px-5 ">
+            <div className="bg-white shadow-md py-5 text-gray-600 px-5 ">
                 <header className="max-w-7xl  mx-auto flex justify-between items-center z-50 ">
                     {/* //* Menu Icons for mobile */}
                     <div className="lg:hidden">
@@ -107,7 +107,7 @@ const Navbar = () => {
                         </div>
                         {/* mobile responsive */}
                         <div className="block lg:hidden">
-                            <ul className="flex justify-end items-center gap-2 lg:flex-row flex-col lg:py-0 py-10 bg-[#ECF5FF] border-b border-secondary">
+                            <ul className="flex justify-end items-center gap-2 lg:flex-row flex-col lg:py-0 py-10 bg-white border-b border-secondary">
                                 {NavBarMenus.map((menu, index) => (
                                     <li
                                         key={index}

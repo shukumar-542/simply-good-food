@@ -2,6 +2,7 @@
 import React from 'react';
 import loginPageImage from '../../assets/loginPageImage.jpg';
 import { Button } from "@/components/ui/button"
+import { signIn } from 'next-auth/react';
 import {
     Form,
     FormControl,
@@ -16,6 +17,9 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner'; 
+
 const formSchema = z.object({
     username: z.string().min(2, {
         message: "Username must be at least 2 characters.",
@@ -25,7 +29,7 @@ const formSchema = z.object({
     }),
 })
 const LoginPage = () => {
-
+    const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -34,10 +38,21 @@ const LoginPage = () => {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+        const res = await signIn("credentials", {
+            redirect: false,
+            email: values.username,
+            password: values.password,
+          });
+      
+          if (res?.error) {
+            console.error(res.error);
+          } else {
+            router.push("/");
+            toast('Logged In Successfully')
+          }
+
     }
     return (
         <div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/5jpThSx/login-Page-Image.jpg)` }}>
