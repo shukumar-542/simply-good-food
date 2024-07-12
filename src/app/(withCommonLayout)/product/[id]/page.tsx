@@ -28,7 +28,6 @@ const ProductDetailsPage = async ({ params }: { params: TProductId }) => {
     const res = await fetch(`https://simple-good-food-server.vercel.app/api/v1/product/${params.id}`)
     const product = await res.json()
 
-    // console.log(product);
     return (
         <div className='max-w-7xl mx-auto'>
             <div className="my-10">

@@ -26,10 +26,10 @@ const formSchema = z.object({
     address: z.string().min(5, { message: "Address must be at least 5 characters." }),
     password: z.string().min(6, { message: "Password must be at least 6 characters." }),
     confirmPassword: z.string().min(6, { message: "Confirm password must be at least 6 characters." }),
-  }).refine((data) => data.password === data.confirmPassword, {
+}).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],
-  });
+});
 
 const RegisterPage = () => {
 
@@ -37,8 +37,8 @@ const RegisterPage = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             username: "",
-            email : "",
-            contactNumber : "",
+            email: "",
+            contactNumber: "",
             password: "",
             confirmPassword: "",
 
@@ -51,33 +51,40 @@ const RegisterPage = () => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         setError(null);
-
+        const toastId = toast.loading("Your account Creating.");
         try {
             const res = await fetch("/api/register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name: values.username,
-                email: values.email,
-                password: values.password,
-              }),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: values.username,
+                    email: values.email,
+                    password: values.password,
+                }),
             });
-      
-            const data = await res.json();
-            if (!res.ok) {
-              throw new Error(data.message || "Something went wrong");
-            }
-      
-            router.push("/login");
-            toast.message("User Create Successfully")
-          } catch (err : any) {
-            setError(err.message);
-          }
-      
 
-       
+            const data = await res.json();
+
+            if (res.status === 201) {
+                toast.success("User Create Successfully", {
+                    id: toastId,
+                    duration: 1000,
+                });
+                router.push("/login");
+            }
+            if (!res.ok) {
+                throw new Error(data.message || "Something went wrong");
+            }
+
+
+        } catch (err: any) {
+            setError(err.message);
+        }
+
+
+
     }
     return (
         <div className=" bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/3hw428M/login-Page-Image.jpg)` }}>

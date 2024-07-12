@@ -41,6 +41,8 @@ const LoginPage = () => {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
+
+        const toastId = toast.loading("Logging Your Account..");
         const res = await signIn("credentials", {
             redirect: false,
             email: values.username,
@@ -49,15 +51,18 @@ const LoginPage = () => {
 
         if (res?.error) {
             console.error("Sign-in error:", res.error);
-            // Handle error (e.g., show error message)
-            // Example: setError(res.error.message);
         } else if (res?.ok) {
 
             // Redirect to homepage
             router.push("/");
 
             //  Show success message
-            toast.success('Logged In Successfully');
+            toast.success('Logged In Successfully',{
+                
+                id: toastId,
+                duration: 1000,
+            }
+            );
         }
 
     }

@@ -22,7 +22,6 @@ const NavBarMenus = [
 
 const Navbar = ({ session }: NavbarProps) => {
     const [isMobile, setIsMobile] = useState(false);
-    console.log(session);
     return (
         <div className='sticky top-0 z-40 '>
 

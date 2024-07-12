@@ -26,7 +26,7 @@ export const {
                     const client = await clientPromise;
                     const db = client.db("simple-food");
                     const user = await db.collection("users").findOne(credentials?.email);
-                    console.log(user);
+                    // console.log(user);
                     if (user) {
                         const isMatch = user?.password === credentials.password;
 
