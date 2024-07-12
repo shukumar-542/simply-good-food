@@ -8,7 +8,7 @@ const layout = async({ children }: { children: React.ReactNode }) => {
     // console.log(session);
     return (
         <div className=''>
-            <Navbar session={session} />
+            <Navbar  />
             <div>
             
                 {children}
