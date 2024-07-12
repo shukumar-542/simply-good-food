@@ -12,10 +12,10 @@ const Footer = () => {
                 <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 justify-between gap-5'>
                     <div className='grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center '>
 
-                        <Image src={footer} className='bg-gray-100 rounded-full h-32' height={80} width={100} alt='Logo' />
+                        <Image src={footer} className='bg-gray-100 rounded-full h-28' height={80} width={100} alt='Logo' />
 
                         <div>
-                            <ul className='space-y-5 text-2xl text-gray-600'>
+                            <ul className='space-y-5 text-xl text-gray-600'>
                                 <li>Home</li>
                                 <li>Our Menus</li>
                                 <li>Meal Plans</li>
@@ -23,7 +23,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <ul className='space-y-5 text-2xl text-gray-600'>
+                            <ul className='space-y-5 text-xl text-gray-600'>
                                 <li>How it work</li>
                                 <li>Testimonials</li>
                                 <li>FAQ</li>

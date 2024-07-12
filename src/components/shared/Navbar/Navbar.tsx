@@ -5,6 +5,9 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import logo from '@/assets/logo.jpeg'
 
+type NavbarProps = {
+    session: any;
+};
 
 const NavBarMenus = [
     { name: "Home", route: "/" },
@@ -17,8 +20,9 @@ const NavBarMenus = [
 ];
 
 
-const Navbar = () => {
+const Navbar = ({ session }: NavbarProps) => {
     const [isMobile, setIsMobile] = useState(false);
+    console.log(session);
     return (
         <div className='sticky top-0 z-40 '>
 
@@ -31,7 +35,7 @@ const Navbar = () => {
 
 
             <div className="bg-white shadow-md py-5 text-gray-600 px-5 ">
-                <header className="max-w-7xl  mx-auto flex justify-between items-center z-50 ">
+                <header className="max-w-6xl  mx-auto flex justify-between items-center z-50 ">
                     {/* //* Menu Icons for mobile */}
                     <div className="lg:hidden">
                         {isMobile ? (

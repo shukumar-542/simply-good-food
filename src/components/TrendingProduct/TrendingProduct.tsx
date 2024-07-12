@@ -17,6 +17,7 @@ import { Button } from '../ui/button';
 import { FaStar } from 'react-icons/fa';
 import { TProduct } from '@/types';
 import Link from 'next/link';
+import { IoStar } from 'react-icons/io5';
 
 
 
@@ -58,53 +59,53 @@ const TrendingProduct = async () => {
     const products = await res.json()
 
     return (
-        <div className='py-20'>
-            <h1 className='text-center text-5xl font-bold text-gray-500'>New & Trending Product</h1>
+        <div className='py-20 max-w-6xl mx-auto'>
+            <h1 className='text-center text-5xl font-bold text-gray-500 mb-10'>New & Trending Product</h1>
 
             <div>
 
-                <Carousel
-                    opts={{
-                        align: "start",
-                    }}
-                    className="w-full max-w-7xl mx-auto pt-10 cursor-pointer"
-                >
+                <Carousel>
                     <CarouselContent>
                         {products.map((product: TProduct) => (
-                            <CarouselItem key={product?._id} className="md:basis-1/2 lg:basis-1/3 mx-auto">
+                            <CarouselItem
+                                key={product?._id}
+                                className="md:basis-1/2 lg:basis-[29%] gap-32 ml-2"
+                            >
                                 <Link href={`/product/${product?._id}`}>
-                                    <div className="p-1">
-                                        <Card>
-                                            <CardContent className="flex  items-center justify-center p-4 border-none bg-[#F6F6F6]">
-                                                <div>
-                                                    <Image src={product?.img} className='h-60 rounded-md' height={400} width={400} alt='img' />
+                                    <div className="bg-gray-100  rounded-lg p-2 flex flex-col">
+                                        <Image
+                                            src={product?.img}
+                                            alt="food_image"
+                                            width={0}
+                                            height={0}
+                                            sizes="100vw"
+                                            className="w-full h-56 object-cover rounded-lg mb-4"
+                                        />
+                                        <div className="flex items-center mb-1">
+                                            <IoStar className="text-amber-500" />
+                                            <span className="ml-1 text-sm text-amber-500">{product?.rating}/5</span>
+                                        </div>
 
-                                                    <p className='text-[#FFB84B] flex items-center gap-2 py-2'><FaStar />{product?.rating}/5</p>
-                                                    <h1 className='text-2xl font-bold text-[#5E5E5E]'>{product?.name}</h1>
-                                                    <p className='font-bold text-xl text-[#8F7887] py-5'>${product?.price}</p>
-                                                    <Button className='w-full'>Add to cart</Button>
-                                                    <div className='flex gap-4 pt-6 justify-center items-center text-[#B47986] font-semibold'>
-                                                        {
-                                                            product?.ingredients.map((ingredient, i) => <p key={i}>
-                                                                {ingredient}   /
-                                                            </p>)
-                                                        }
-                                                    </div>
-                                                </div>
-
-                                            </CardContent>
-                                        </Card>
+                                        <h3 className="text-lg font-bold text-slate-600 mb-3">{product?.name}</h3>
+                                        <p className="text-sm text-gray-500 font-bold mb-4">${product?.price}</p>
+                                        <Button>Add To Cart</Button>
+                                        <div className="text-xs py-2 text-[#B47986] flex justify-evenly">
+                                            {
+                                                product?.ingredients.map((ingredient, i) => <p key={i}>
+                                                    {ingredient}   /
+                                                </p>)
+                                            }
+                                        </div>
                                     </div>
                                 </Link>
                             </CarouselItem>
                         ))}
-                    </CarouselContent >
-                    <div className='hidden sm:block'>
-                        <CarouselPrevious className='-left-8  ' />
-                        <CarouselNext className='-right-8' />
-                    </div>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
                 </Carousel>
-                {/* <Image src={img5} className='w-full' height={400} width={600} alt='img' /> */}
+
+                
 
 
             </div>

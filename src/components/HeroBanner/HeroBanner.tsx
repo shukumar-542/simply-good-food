@@ -45,9 +45,9 @@ const HeroBanner = () => {
     return (
         <div className=' mb-20 bg-cover bg-center' style={{ backgroundImage: `url(https://i.ibb.co/wQT73K5/home-hero.jpg)` }} >
             <div className='bg-white bg-opacity-95 h-full  py-20'>
-                <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-items-center justify-center'>
+                <div className='max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-items-center justify-center'>
                     <div className=''>
-                        <h1 className='text-[80px] font-bold tracking-wider'>Keep track of <br /> <span className='text-green-600 mt-5'>Fitness Goal</span></h1>
+                        <h1 className='text-[75px] font-bold tracking-wider'>Keep track of <br /> <span className='text-green-600 mt-5'>Fitness Goal</span></h1>
                         <p className='text-2xl font-bold tracking-wider my-10 '>Order on Simply Good Food</p>
                         <Button variant={'heroButton'}>Explore More <MdOutlineArrowOutward /></Button>
                     </div>

@@ -13,7 +13,7 @@ const FAQS = () => {
                 and enjoyable while not sacrificing flavor. Do you have a question regarding our shipping service?</p>
 
 
-            <div className="max-w-7xl mx-auto py-10 px-1">
+            <div className="max-w-6xl mx-auto py-10 px-1">
                 <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                         <AccordionTrigger>What are the foods like Steel Yat? How does the mail plan work?

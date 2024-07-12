@@ -18,7 +18,8 @@ import { z } from "zod"
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useRouter } from 'next/navigation';
-import { toast } from 'sonner'; 
+import { toast } from 'sonner';
+import Link from 'next/link';
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -44,19 +45,25 @@ const LoginPage = () => {
             redirect: false,
             email: values.username,
             password: values.password,
-          });
-      
-          if (res?.error) {
-            console.error(res.error);
-          } else {
+        });
+
+        if (res?.error) {
+            console.error("Sign-in error:", res.error);
+            // Handle error (e.g., show error message)
+            // Example: setError(res.error.message);
+        } else if (res?.ok) {
+
+            // Redirect to homepage
             router.push("/");
-            toast('Logged In Successfully')
-          }
+
+            //  Show success message
+            toast.success('Logged In Successfully');
+        }
 
     }
     return (
-        <div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/5jpThSx/login-Page-Image.jpg)` }}>
-            <div className="flex items-center justify-evenly h-full bg-black bg-opacity-50">
+        <div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/3hw428M/login-Page-Image.jpg)` }}>
+            <div className="flex items-center justify-evenly h-full  px-4  bg-black bg-opacity-50">
                 <div></div>
                 <div></div>
                 <div className="bg-gray-200 bg-opacity-90 p-8 rounded-md shadow-md w-full max-w-lg">
@@ -120,7 +127,7 @@ const LoginPage = () => {
                     </Form>
 
                     <div>
-                        <p className='text-center py-8 text-gray-500 '>Don&apos;t have any account?  <span className='text-yellow-500 font-semibold '>Sign up</span>  </p>
+                        <p className='text-center py-8 text-gray-500 '>Don&apos;t have any account? <Link href={'/register'}> <span className='text-yellow-500 font-semibold '>Sign up</span></Link>  </p>
                     </div>
                 </div>
             </div>

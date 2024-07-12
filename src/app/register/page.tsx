@@ -18,6 +18,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'sonner';
 const formSchema = z.object({
     username: z.string().min(2, { message: "Username must be at least 2 characters." }),
     email: z.string().email({ message: "Invalid email address." }),
@@ -69,7 +70,8 @@ const RegisterPage = () => {
               throw new Error(data.message || "Something went wrong");
             }
       
-            router.push("/");
+            router.push("/login");
+            toast.message("User Create Successfully")
           } catch (err : any) {
             setError(err.message);
           }
@@ -78,7 +80,7 @@ const RegisterPage = () => {
        
     }
     return (
-        <div className=" bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/5jpThSx/login-Page-Image.jpg)` }}>
+        <div className=" bg-cover bg-center" style={{ backgroundImage: `url(https://i.ibb.co/3hw428M/login-Page-Image.jpg)` }}>
             <div className="flex items-center justify-evenly h-full bg-black bg-opacity-50 py-10">
                 <div></div>
                 <div></div>

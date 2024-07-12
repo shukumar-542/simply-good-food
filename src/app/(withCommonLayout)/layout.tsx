@@ -1,13 +1,16 @@
 import Footer from '@/components/shared/Footer/Footer';
 import Navbar from '@/components/shared/Navbar/Navbar';
+import { authOptions } from '@/utils/authOptions';
+import { getServerSession } from 'next-auth';
 import React from 'react';
-import { Toaster } from "sonner";
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = async({ children }: { children: React.ReactNode }) => {
+    const session = await getServerSession(authOptions)
+    // console.log(session);
     return (
         <div className=''>
-            <Navbar />
-            <div className='min-h-[75vh]'>
-                <Toaster position="top-right" />
+            <Navbar session={session} />
+            <div>
+            
                 {children}
             </div>
             <Footer />

@@ -23,8 +23,8 @@ const goodFoods = [
 
 const WhyGoodFood = () => {
     return (
-        <div className='max-w-7xl mx-auto py-10'>
-            <h1 className="text-center text-5xl text-gray-700 font-bold">Why Simply Good Food</h1>
+        <div className='max-w-6xl mx-auto py-10'>
+            <h1 className="text-center text-4xl text-gray-700 font-bold">Why Simply Good Food</h1>
             <div className='grid grid-cols-1 md:grid-cols-3 mt-10'>
                 {
                     goodFoods.map((food, i) => <div key={i} className='flex flex-col gap-5 justify-center items-center space-y-5'>

@@ -9,12 +9,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from "next/image";
-// import Autoplay from "embla-carousel-autoplay"
-// plugins={[
-//     Autoplay({
-//         delay: 2000,
-//     }),
-// ]}
+
 const Feedback = () => {
 
     return (
