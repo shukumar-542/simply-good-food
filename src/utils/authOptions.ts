@@ -26,10 +26,11 @@ export const authOptions : NextAuthOptions = {
                 const client = await clientPromise;
                 const db = client.db("simple-food");
                 const user = await db.collection("users").findOne({ email });
-        
+               
                 if (user && bcrypt.compareSync(password, user.password)) {
                   return { id: user._id.toString(), name: user.name, email: user.email };
                 }
+              
         
                 return null;
               },
@@ -37,7 +38,9 @@ export const authOptions : NextAuthOptions = {
   ],
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXTAUTH_SECRET,
-  
+  session: {
+    strategy: "jwt",
+  },
   pages: {
     signIn: "/login",
     signOut: "/logout",

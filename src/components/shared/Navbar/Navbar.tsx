@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import logo from '@/assets/logo.jpeg'
+import { signOut, useSession } from 'next-auth/react';
 
 type NavbarProps = {
     session: any;
@@ -20,8 +21,9 @@ const NavBarMenus = [
 ];
 
 
-const Navbar = ({ session }: NavbarProps) => {
+const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const { data: session, status } = useSession();
     return (
         <div className='sticky top-0 z-40 '>
 
@@ -127,25 +129,37 @@ const Navbar = ({ session }: NavbarProps) => {
                     {/* //*More nav Links */}
                     <div className="">
                         <ul className="flex justify-end items-center gap-2 flex-row py-0">
-                            <Link href='/login'>
-                                <li className="cursor-pointer text-sm group relative px-2 md:text-[18px] ">
-                                    <Button variant={'secondary'}>
-                                        Log in
-                                    </Button>
-                                </li>
-                            </Link>
-                            <Link href="/register">
-                                <li className="cursor-pointer text-sm font-semibold group relative px-2 md:text-[18px] ">
-                                    <Button >
-                                        Sign up
-                                    </Button>
-                                </li>
-                            </Link>
-                        </ul>
-                    </div>
-                </header>
+                            {
+                                session?.user?.email ?
+                                    <li className="cursor-pointer text-sm group relative px-2 md:text-[18px] ">
+                                        <Button onClick={() => signOut()} variant={'secondary'}>
+                                            Logout
+                                        </Button>
+                                    </li>
+                                 : <Link href="/login">
+                                    <li className="cursor-pointer text-sm font-semibold group relative px-2 md:text-[18px] ">
+                                        <Button >
+                                            Sing In
+                                        </Button>
+                                    </li>
+                                </Link>
+
+                            }
+
+                            {
+                                !session?.user?.email &&   <Link href="/register">
+                            <li className="cursor-pointer text-sm font-semibold group relative px-2 md:text-[18px] ">
+                                <Button >
+                                    Register
+                                </Button>
+                            </li>
+                        </Link>
+                            }
+                    </ul>
             </div>
-        </div>
+        </header>
+            </div >
+        </div >
     );
 };
 
